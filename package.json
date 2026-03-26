@@ -1,6 +1,6 @@
 {
   "name": "@usecomposer/mcp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "type": "module",
   "description": "Give your AI coding agent an architecture canvas. Design, visualize, and evolve software architecture diagrams from your IDE.",
   "main": "dist/src/server/server.js",
@@ -53,6 +53,7 @@
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.2.2",
     "@modelcontextprotocol/sdk": "^1.27.1",
+    "@usecomposer/mcp": "^0.1.4",
     "express": "^5.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
