@@ -1,0 +1,51 @@
+/* Load fonts first — @import must precede other statements */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400&display=swap');
+
+:root {
+  color-scheme: light dark;
+
+  /* Composer design tokens as CSS variable fallbacks.
+   * The host may override these via host context. */
+  --color-text-primary: light-dark(#141413, #FAF9F6);
+  --color-text-secondary: light-dark(#64748b, #8a8d8f);
+  --color-text-muted: light-dark(#94a3b8, #6b7280);
+  --color-background-primary: light-dark(#FAF9F6, #353532);
+  --color-background-secondary: light-dark(#FFFFFF, #3d3d3a);
+  --color-background-elevated: light-dark(#F0EEE6, #48473f);
+  --color-border: light-dark(#E8E6DE, #4f4e47);
+  --color-accent: #D27754;
+  --color-accent-hover: #C26848;
+
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 12px;
+
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}

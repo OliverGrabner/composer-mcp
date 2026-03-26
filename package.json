@@ -1,0 +1,78 @@
+{
+  "name": "@usecomposer/mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Give your AI coding agent an architecture canvas. Design, visualize, and evolve software architecture diagrams from your IDE.",
+  "main": "dist/src/server/server.js",
+  "types": "dist/src/server/server.d.ts",
+  "bin": {
+    "composer-mcp": "dist/src/server/main.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/src/server/server.d.ts",
+      "default": "./dist/src/server/server.js"
+    }
+  },
+  "scripts": {
+    "build:app": "cross-env INPUT=mcp-app.html vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build": "npm run build:app && npm run build:server",
+    "watch": "cross-env INPUT=mcp-app.html vite build --watch",
+    "serve": "tsx --watch src/server/main.ts",
+    "serve:stdio": "tsx src/server/main.ts --stdio",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run watch\" \"npm run serve\"",
+    "start": "cross-env NODE_ENV=development npm run build && npm run serve",
+    "start:stdio": "cross-env NODE_ENV=development npm run build && npm run serve:stdio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olivergrabner/composer-mcp"
+  },
+  "homepage": "https://usecomposer.com",
+  "bugs": {
+    "url": "https://github.com/olivergrabner/composer-mcp/issues"
+  },
+  "author": "Composer <hello@usecomposer.com> (https://usecomposer.com)",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "architecture",
+    "diagram",
+    "system-design",
+    "composer",
+    "claude",
+    "cursor",
+    "ai",
+    "developer-tools",
+    "software-architecture",
+    "mcp-server"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.2.2",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.0.0",
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}
