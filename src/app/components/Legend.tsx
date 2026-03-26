@@ -1,5 +1,5 @@
 /**
- * Node type color legend — shown in fullscreen mode.
+ * Node type color legend -shown in fullscreen mode.
  */
 
 import React from 'react'

@@ -1,4 +1,4 @@
-/* Load fonts first — @import must precede other statements */
+/* Load fonts first -@import must precede other statements */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400&display=swap');
 
 :root {

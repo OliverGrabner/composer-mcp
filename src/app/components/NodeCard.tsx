@@ -1,5 +1,5 @@
 /**
- * SVG node card — mirrors frontend/src/components/nodes/SystemNode.tsx visual design.
+ * SVG node card -mirrors frontend/src/components/nodes/SystemNode.tsx visual design.
  * Renders as an SVG <g> group with:
  * - Rounded rect background
  * - 4px left accent bar

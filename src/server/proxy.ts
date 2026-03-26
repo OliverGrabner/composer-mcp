@@ -73,7 +73,7 @@ export async function fetchGraphData(apiBase: string, token: string): Promise<Gr
   const graphJson = JSON.parse(textContent.text) as { nodes: any[]; edges: any[] };
 
   // The get_graph tool returns nodes without positions (cleaned format).
-  // We need positions for the viewer — fallback layout will arrange them if all (0,0).
+  // We need positions for the viewer -fallback layout will arrange them if all (0,0).
   const nodes: DiagramNode[] = graphJson.nodes.map((n) => ({
     id: n.id,
     type: "system",

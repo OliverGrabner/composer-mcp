@@ -159,7 +159,7 @@ function extractGraphData(result: CallToolResult): GraphData | null {
       if (parsed.nodes && parsed.edges) return parsed as GraphData
       if (parsed.graph) return parsed.graph as GraphData
     } catch {
-      // Not JSON — plain text fallback
+      // Not JSON -plain text fallback
     }
   }
 

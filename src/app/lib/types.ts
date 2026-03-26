@@ -1,4 +1,4 @@
-/** Subset of frontend/src/types.ts — just what the MCP App viewer needs. */
+/** Subset of frontend/src/types.ts -just what the MCP App viewer needs. */
 
 export type NodeType = 'client' | 'frontend' | 'backend' | 'database' | 'cache' | 'queue' | 'storage' | 'external'
 export type Protocol = 'REST' | 'gRPC' | 'GraphQL' | 'WebSocket' | 'TCP' | 'UDP' | 'async' | 'event' | 'internal'

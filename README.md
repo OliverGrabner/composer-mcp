@@ -6,7 +6,7 @@
 
 <p align="center">
   Give your AI coding agent an architecture canvas.<br/>
-  Design, visualize, and evolve software architecture diagrams — right from your IDE.
+  Design, visualize, and evolve software architecture diagrams - right from your IDE.
 </p>
 
 <p align="center">
@@ -15,19 +15,33 @@
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-compatible-green.svg" alt="MCP Compatible" /></a>
 </p>
 
+<br/>
+
+<p align="center">
+  <video src="https://github.com/OliverGrabner/composer-mcp/raw/main/demo.mp4" controls autoplay loop muted></video>
+</p>
+
 ---
 
-**Composer** is a visual system design tool that lets AI coding agents create and modify interactive architecture diagrams through [MCP (Model Context Protocol)](https://modelcontextprotocol.io). Your agent gets tools to add services, databases, queues, and connections — and you get a live canvas at [usecomposer.com](https://usecomposer.com) that updates in real-time.
+**Composer** is a visual system design tool that lets AI coding agents create and modify interactive architecture diagrams through [MCP (Model Context Protocol)](https://modelcontextprotocol.io). Your agent gets tools to add services, databases, queues, and connections, and you get a live canvas at [usecomposer.com](https://usecomposer.com) that updates in real-time.
 
-https://github.com/OliverGrabner/composer-mcp/raw/main/demo.mp4
+```
+Your IDE  <-->  MCP Server (this package)  <-->  Composer API  <-->  Your Diagram
+```
 
-## Quick Start
+> **Try it now** - no account needed:
+> ```bash
+> npx @usecomposer/mcp --demo
+> ```
+> Starts the server with sample architecture data so you can explore all the tools.
+
+## Getting Started
 
 ### 1. Get a token
 
 1. Sign up at [usecomposer.com](https://usecomposer.com)
 2. Create a diagram
-3. Open **Diagram Settings** (gear icon) → **MCP Tokens** → **Generate Token**
+3. Open **Diagram Settings** (gear icon) > **MCP Tokens** > **Generate Token**
 4. Copy the token (starts with `fl_`)
 
 ### 2. Connect your IDE
@@ -57,7 +71,7 @@ claude mcp add --transport http composer https://mcp.usecomposer.com --header "A
 }
 ```
 
-Verify: run `/mcp` in your Claude Code session — Composer should appear with its tools.
+Verify: run `/mcp` in your Claude Code session. Composer should appear with its tools.
 
 </details>
 
@@ -87,6 +101,30 @@ Restart Claude Desktop. Look for the MCP tools icon in the chat input.
 </details>
 
 <details>
+<summary><strong>Codex</strong></summary>
+
+**One-liner:**
+
+```bash
+codex mcp add composer -- npx -y @usecomposer/mcp --stdio
+```
+
+**Or add to `~/.codex/config.toml`** (or `.codex/config.toml` in your project root):
+
+```toml
+[mcp_servers.composer]
+command = "npx"
+args = ["-y", "@usecomposer/mcp", "--stdio"]
+
+[mcp_servers.composer.env]
+COMPOSER_TOKEN = "fl_your_token_here"
+```
+
+Verify: run `/mcp` in a Codex session to confirm Composer appears.
+
+</details>
+
+<details>
 <summary><strong>Cursor</strong></summary>
 
 Create `.cursor/mcp.json` in your project root:
@@ -105,7 +143,7 @@ Create `.cursor/mcp.json` in your project root:
 }
 ```
 
-Open Cursor Settings → MCP section to verify "Composer" appears.
+Open Cursor Settings > MCP section to verify "Composer" appears.
 
 </details>
 
@@ -133,7 +171,7 @@ Create `.vscode/mcp.json` in your project root:
 <details>
 <summary><strong>VS Code (Cline)</strong></summary>
 
-Open Cline sidebar → Settings (gear icon) → MCP Servers → Add Remote Server:
+Open Cline sidebar > Settings (gear icon) > MCP Servers > Add Remote Server:
 
 ```json
 {
@@ -213,22 +251,35 @@ Run `/mcp` to verify Composer appears.
 
 </details>
 
-## Available Tools
+## Tools
+
+### Read
 
 | Tool | Description |
 |------|-------------|
-| `get_graph` | Get the full architecture diagram — all nodes and edges |
+| `get_graph` | Get the full architecture diagram - all nodes and edges |
 | `get_node` | Get details for a single node including connected edges |
+| `search_graph` | Search nodes and edges by keyword |
+| `get_screenshot` | Get a PNG thumbnail of the diagram from the last auto-save |
+| `show_diagram` | Display an interactive diagram viewer inline (MCP Apps) |
+
+### Write
+
+| Tool | Description |
+|------|-------------|
 | `upsert_node` | Create or update a node (service, database, queue, etc.) |
 | `upsert_edge` | Create or update a connection between two nodes |
 | `define_api` | Define API endpoints on a backend service node |
 | `delete_element` | Delete a node or edge from the diagram |
 | `link_path` | Link a node to a file or folder in your codebase |
-| `search_graph` | Search nodes and edges by keyword |
-| `verify_diagram` | Check for completeness issues (missing endpoints, orphaned nodes, etc.) |
-| `get_guide` | Reference guide for node types, protocols, and best practices |
+
+### Plan & Verify
+
+| Tool | Description |
+|------|-------------|
+| `verify_diagram` | Check for issues like missing endpoints or orphaned nodes |
 | `plan_import` | Step-by-step workflow for importing an existing codebase |
-| `show_diagram` | Display an interactive diagram viewer inline (MCP Apps) |
+| `get_guide` | Reference guide for node types, protocols, and best practices |
 
 ### Node Types
 
@@ -242,34 +293,24 @@ Run `/mcp` to verify Composer appears.
 
 Once connected, try asking your AI agent:
 
-- *"Import this codebase into Composer"* — scans your repo and builds the architecture diagram
-- *"Add a Redis cache between the API and the database"* — modifies the diagram
-- *"Verify my architecture diagram"* — checks for missing endpoints, orphaned nodes, etc.
-- *"Link each node to its source code"* — associates diagram nodes with file paths
-
-## Demo Mode
-
-Try it without an account:
-
-```bash
-npx @usecomposer/mcp --demo
-```
-
-This starts the server with sample architecture data so you can see how the tools work.
-
-## How it Works
-
-This MCP server is a thin client. It authenticates with your token and proxies tool calls to the Composer API at `mcp.usecomposer.com`. Your diagram data lives on Composer's servers — the MCP server itself is stateless.
-
-```
-Your IDE ←→ MCP Server (this package) ←→ Composer API ←→ Your Diagram
-```
-
-Changes made through the MCP are immediately visible on the [Composer canvas](https://usecomposer.com) via real-time WebSocket sync.
+| Prompt | What it does |
+|--------|-------------|
+| *"Import this codebase into Composer"* | Scans your repo and builds the architecture diagram |
+| *"Add a Redis cache between the API and the database"* | Adds a new node and edges to the diagram |
+| *"Show me the current architecture"* | Renders an interactive viewer inline (MCP Apps) |
+| *"Verify my architecture diagram"* | Checks for missing endpoints, orphaned nodes, etc. |
+| *"Define the REST API for the user service"* | Adds endpoint definitions to a backend node |
+| *"Link each node to its source code"* | Associates diagram nodes with file paths |
 
 ## MCP App Viewer
 
-When used with clients that support [MCP Apps](https://modelcontextprotocol.io/specification/2025-06-18/server/utilities/apps) (like Claude), the `show_diagram` tool renders an **interactive diagram viewer** directly in the conversation — no browser tab needed. You can click nodes, inspect endpoints, and see the full architecture inline.
+When used with clients that support [MCP Apps](https://modelcontextprotocol.io/specification/2025-06-18/server/utilities/apps) (like Claude), the `show_diagram` tool renders an **interactive diagram viewer** directly in the conversation. Click nodes, inspect endpoints, and see the full architecture inline - no browser tab needed.
+
+## How It Works
+
+This MCP server is a thin client. It authenticates with your token and proxies tool calls to the Composer API at `mcp.usecomposer.com`. Your diagram data lives on Composer's servers. The MCP server itself is stateless.
+
+Changes made through MCP are immediately visible on the [Composer canvas](https://usecomposer.com) via real-time WebSocket sync.
 
 ## Development
 
@@ -283,9 +324,9 @@ npm run build      # Production build
 
 ## Links
 
-- [Composer](https://usecomposer.com) — the visual architecture canvas
-- [MCP Protocol](https://modelcontextprotocol.io) — Model Context Protocol spec
-- [Issues](https://github.com/olivergrabner/composer-mcp/issues) — bug reports and feature requests
+- [Composer](https://usecomposer.com) - the visual architecture canvas
+- [MCP Protocol](https://modelcontextprotocol.io) - Model Context Protocol spec
+- [Issues](https://github.com/olivergrabner/composer-mcp/issues) - bug reports and feature requests
 
 ## License
 

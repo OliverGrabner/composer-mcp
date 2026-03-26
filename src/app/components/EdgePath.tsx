@@ -1,5 +1,5 @@
 /**
- * SVG edge renderer — bezier curves with labels and arrowheads.
+ * SVG edge renderer -bezier curves with labels and arrowheads.
  * Mirrors frontend/src/components/edges/LabeledEdge.tsx visual style.
  */
 

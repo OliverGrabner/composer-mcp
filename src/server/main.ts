@@ -12,15 +12,13 @@ import { createMcpExpressApp } from "@modelcontextprotocol/sdk/server/express.js
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import cors from "cors";
 import type { Request, Response } from "express";
 import { createServer } from "./server.js";
 
 async function startStreamableHTTPServer(createServerFn: () => McpServer): Promise<void> {
   const port = parseInt(process.env.PORT ?? "3001", 10);
 
-  const app = createMcpExpressApp({ host: "0.0.0.0" });
-  app.use(cors());
+  const app = createMcpExpressApp({ host: "127.0.0.1" });
 
   app.all("/mcp", async (req: Request, res: Response) => {
     const server = createServerFn();

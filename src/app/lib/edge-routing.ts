@@ -1,5 +1,5 @@
 /**
- * Edge routing logic — ported from frontend/src/utils/edgeRouting.ts
+ * Edge routing logic -ported from frontend/src/utils/edgeRouting.ts
  * Computes handle sides and spread offsets for overlapping edges.
  */
 

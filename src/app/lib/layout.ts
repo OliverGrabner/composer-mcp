@@ -19,7 +19,7 @@ const VERTICAL_GAP = 150
 const START_X = 50
 const START_Y = 50
 
-/** Check if all nodes are at (0,0) — meaning no layout has been applied yet. */
+/** Check if all nodes are at (0,0) -meaning no layout has been applied yet. */
 function needsLayout(nodes: DiagramNode[]): boolean {
   if (nodes.length === 0) return false
   return nodes.every(n => n.position.x === 0 && n.position.y === 0)
