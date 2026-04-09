@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://usecomposer.com/logo_warm_trio_no_bg.svg" width="28" alt="Composer logo" />
+  <img src="https://usecomposer.com/logo_warm_trio_no_bg.svg" width="14" alt="Composer logo" />
   <strong>Composer MCP Server</strong>
 </p>
 
@@ -26,18 +26,7 @@
 Your IDE  <-->  MCP Server (this package)  <-->  Composer API  <-->  Your Diagram
 ```
 
-> **Try it now** - no account needed:
-> ```bash
-> npx @usecomposer/mcp --demo
-> ```
-> Starts the server with sample architecture data so you can explore all the tools.
-
 ## Getting Started
-
-1. Sign up at [usecomposer.com](https://usecomposer.com)
-2. Add the server to your IDE (see below)
-3. Authorize in your browser when prompted
-4. Start building diagrams
 
 ### Connect your IDE
 
@@ -67,26 +56,6 @@ Your browser will open for authorization on first use.
 
 ```bash
 claude mcp add --transport http composer https://mcp.usecomposer.com
-```
-
-</details>
-
-<details>
-<summary><strong>Claude Desktop</strong></summary>
-
-Add to `claude_desktop_config.json`:
-- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "composer": {
-      "type": "http",
-      "url": "https://mcp.usecomposer.com"
-    }
-  }
-}
 ```
 
 </details>
