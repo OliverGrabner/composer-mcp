@@ -1,6 +1,7 @@
 {
   "name": "@usecomposer/mcp",
   "version": "0.1.6",
+  "mcpName": "io.github.OliverGrabner/composer",
   "type": "module",
   "description": "Give your AI coding agent an architecture canvas. Design, visualize, and evolve software architecture diagrams from your IDE.",
   "main": "dist/src/server/server.js",
