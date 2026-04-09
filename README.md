@@ -1,12 +1,15 @@
 <p align="center">
-  <img src="https://usecomposer.com/logo_warm_trio_no_bg.svg" width="60" alt="Composer logo" />
+  <video src="https://github.com/OliverGrabner/composer-mcp/raw/main/demo.mp4" controls autoplay loop muted></video>
 </p>
 
-<h1 align="center">Composer MCP Server</h1>
+<p align="center">
+  <img src="https://usecomposer.com/logo_warm_trio_no_bg.svg" width="28" alt="Composer logo" />
+  <strong>Composer MCP Server</strong>
+</p>
 
 <p align="center">
   Give your AI coding agent an architecture canvas.<br/>
-  Connect your repo, build architecture diagrams through your coding agent, and keep them linked to real code.
+  Design, visualize, and evolve software architecture diagrams - right from your IDE.
 </p>
 
 <p align="center">
@@ -15,17 +18,7 @@
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-compatible-green.svg" alt="MCP Compatible" /></a>
 </p>
 
-<br/>
-
-<p align="center">
-  <video src="https://github.com/OliverGrabner/composer-mcp/raw/main/demo.mp4" controls autoplay loop muted></video>
-</p>
-
 ---
-
-## Why
-
-AI coding agents see files, not architecture. They make locally reasonable changes that break the system because they have no understanding of how components connect. Composer gives them that understanding: a structured, visual architecture graph they can read before every change and update as they build.
 
 **Composer** is a visual system design tool that lets AI coding agents create and modify interactive architecture diagrams through [MCP (Model Context Protocol)](https://modelcontextprotocol.io). Your agent gets tools to add services, databases, queues, and connections, and you get a live canvas at [usecomposer.com](https://usecomposer.com) that updates in real-time.
 
@@ -33,47 +26,48 @@ AI coding agents see files, not architecture. They make locally reasonable chang
 Your IDE  <-->  MCP Server (this package)  <-->  Composer API  <-->  Your Diagram
 ```
 
-## Quick Start
+> **Try it now** - no account needed:
+> ```bash
+> npx @usecomposer/mcp --demo
+> ```
+> Starts the server with sample architecture data so you can explore all the tools.
 
-### Claude Code (one command)
-
-```bash
-claude mcp add --transport http composer \
-  https://mcp.usecomposer.com \
-  --header "Authorization: Bearer fl_your_token_here"
-```
-
-Replace `fl_your_token_here` with your token from [usecomposer.com](https://usecomposer.com) > Diagram Settings > MCP Tokens.
-
-### Get a token
+## Getting Started
 
 1. Sign up at [usecomposer.com](https://usecomposer.com)
-2. Create a diagram
-3. Open **Diagram Settings** (gear icon) > **MCP Tokens** > **Generate Token**
-4. Copy the token (starts with `fl_`)
+2. Add the server to your IDE (see below)
+3. Authorize in your browser when prompted
+4. Start building diagrams
 
-### Other editors
+### Connect your IDE
 
-<details>
-<summary><strong>Claude Code (.mcp.json)</strong></summary>
+**Claude Code:**
 
-Add to `.mcp.json` in your project root:
+```bash
+claude mcp add --transport http composer https://mcp.usecomposer.com
+```
+
+**Cursor** — create `.cursor/mcp.json` in your project root:
 
 ```json
 {
   "mcpServers": {
     "composer": {
       "type": "http",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
 ```
 
-Verify: run `/mcp` in your Claude Code session. Composer should appear with its tools.
+Your browser will open for authorization on first use.
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+```bash
+claude mcp add --transport http composer https://mcp.usecomposer.com
+```
 
 </details>
 
@@ -89,40 +83,11 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "composer": {
       "type": "http",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
 ```
-
-Restart Claude Desktop. Look for the MCP tools icon in the chat input.
-
-</details>
-
-<details>
-<summary><strong>Codex</strong></summary>
-
-**One-liner:**
-
-```bash
-codex mcp add composer -- npx -y @usecomposer/mcp --stdio
-```
-
-**Or add to `~/.codex/config.toml`** (or `.codex/config.toml` in your project root):
-
-```toml
-[mcp_servers.composer]
-command = "npx"
-args = ["-y", "@usecomposer/mcp", "--stdio"]
-
-[mcp_servers.composer.env]
-COMPOSER_TOKEN = "fl_your_token_here"
-```
-
-Verify: run `/mcp` in a Codex session to confirm Composer appears.
 
 </details>
 
@@ -136,16 +101,20 @@ Create `.cursor/mcp.json` in your project root:
   "mcpServers": {
     "composer": {
       "type": "http",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
 ```
 
-Open Cursor Settings > MCP section to verify "Composer" appears.
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+```bash
+codex mcp add composer -- npx -y @usecomposer/mcp --stdio
+```
 
 </details>
 
@@ -159,10 +128,7 @@ Create `.vscode/mcp.json` in your project root:
   "servers": {
     "composer": {
       "type": "http",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
@@ -180,10 +146,7 @@ Open Cline sidebar > Settings (gear icon) > MCP Servers > Add Remote Server:
   "mcpServers": {
     "composer": {
       "type": "http",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
@@ -200,8 +163,6 @@ Add to `.continue/config.yaml`:
 mcpServers:
   - name: composer
     url: https://mcp.usecomposer.com
-    headers:
-      Authorization: "Bearer fl_your_token_here"
 ```
 
 </details>
@@ -209,24 +170,19 @@ mcpServers:
 <details>
 <summary><strong>Windsurf</strong></summary>
 
-Add to `~/.codeium/windsurf/mcp_config.json` (global config):
+Add to `~/.codeium/windsurf/mcp_config.json`:
 
 ```json
 {
   "mcpServers": {
     "composer": {
-      "serverUrl": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "serverUrl": "https://mcp.usecomposer.com"
     }
   }
 }
 ```
 
 > **Note:** Windsurf uses `"serverUrl"` instead of `"url"`.
-
-Restart Windsurf after saving.
 
 </details>
 
@@ -240,18 +196,61 @@ Create `opencode.json` in your project root:
   "mcp": {
     "composer": {
       "type": "remote",
-      "url": "https://mcp.usecomposer.com",
-      "headers": {
-        "Authorization": "Bearer fl_your_token_here"
-      }
+      "url": "https://mcp.usecomposer.com"
     }
   }
 }
 ```
 
-Run `/mcp` to verify Composer appears.
-
 </details>
+
+## Tools
+
+### Diagram Management
+
+| Tool | Description |
+|------|-------------|
+| `list_diagrams` | List all your diagrams. Call this first to find which diagram to work on |
+| `create_diagram` | Create a new diagram and auto-select it for this session |
+| `select_diagram` | Select which diagram to work on for this session |
+| `rename_diagram` | Rename the currently selected diagram |
+
+> **Note:** Call `list_diagrams` then `select_diagram` (or `create_diagram`) before using other tools.
+
+### Read
+
+| Tool | Description |
+|------|-------------|
+| `get_graph` | Get the full architecture diagram - all nodes and edges |
+| `get_node` | Get details for a single node including connected edges |
+| `search_graph` | Search nodes and edges by keyword |
+| `get_screenshot` | Get a PNG thumbnail of the diagram from the last auto-save |
+
+### Write
+
+| Tool | Description |
+|------|-------------|
+| `upsert_node` | Create or update a node (service, database, queue, etc.) |
+| `upsert_edge` | Create or update a connection between two nodes |
+| `define_api` | Define API endpoints on a backend service node |
+| `delete_element` | Delete a node or edge from the diagram |
+| `link_path` | Link a node to a file or folder in your codebase |
+
+### Plan & Verify
+
+| Tool | Description |
+|------|-------------|
+| `verify_diagram` | Check for issues like missing endpoints or orphaned nodes |
+| `plan_import` | Step-by-step workflow for importing an existing codebase |
+| `get_guide` | Reference guide for node types, protocols, and best practices |
+
+### Node Types
+
+`client` · `frontend` · `backend` · `database` · `cache` · `queue` · `storage` · `external`
+
+### Edge Protocols
+
+`REST` · `gRPC` · `GraphQL` · `WebSocket` · `TCP` · `UDP` · `async` · `event` · `internal`
 
 ## Example Prompts
 
@@ -259,54 +258,19 @@ Once connected, try asking your AI agent:
 
 | Prompt | What it does |
 |--------|-------------|
-| *"Use Composer to import this codebase as an architecture diagram"* | Scans your repo and builds the diagram |
+| *"Import this codebase into Composer"* | Scans your repo and builds the architecture diagram |
+| *"Create a new Composer diagram called Backend Architecture"* | Creates and auto-selects a new diagram |
 | *"Add a Redis cache between the API and the database in Composer"* | Adds a new node and edges to the diagram |
-| *"Use the Composer MCP to show me the current architecture"* | Renders an interactive viewer inline (MCP Apps) |
-| *"Run verify_diagram on my Composer diagram"* | Checks for missing endpoints, orphaned nodes, etc. |
-| *"Use Composer to define the REST API for the user service"* | Adds endpoint definitions to a backend node |
+| *"Add analytics monitoring to the Composer diagram"* | Adds observability nodes and connections |
+| *"Update the APIs I defined in Composer"* | Refreshes endpoint definitions on backend nodes |
+| *"Verify my Composer diagram"* | Checks for missing endpoints, orphaned nodes, etc. |
 | *"Link each Composer node to its source code"* | Associates diagram nodes with file paths |
-
-## Tools
-
-| Tool | Description |
-|------|-------------|
-| `get_graph` | Get the full architecture diagram, all nodes and edges |
-| `get_node` | Get details for a single node including connected edges |
-| `search_graph` | Search nodes and edges by keyword |
-| `get_screenshot` | Get a PNG thumbnail of the diagram from the last auto-save |
-| `show_diagram` | Display an interactive diagram viewer inline (MCP Apps) |
-| `upsert_node` | Create or update a node (service, database, queue, etc.) |
-| `upsert_edge` | Create or update a connection between two nodes |
-| `define_api` | Define API endpoints on a backend service node |
-| `delete_element` | Delete a node or edge from the diagram |
-| `link_path` | Link a node to a file or folder in your codebase |
-| `verify_diagram` | Check for issues like missing endpoints or orphaned nodes |
-| `plan_import` | Step-by-step workflow for importing an existing codebase |
-| `get_guide` | Reference guide for node types, protocols, and best practices |
-
-**Node types:** `client` · `frontend` · `backend` · `database` · `cache` · `queue` · `storage` · `external`
-
-**Edge protocols:** `REST` · `gRPC` · `GraphQL` · `WebSocket` · `TCP` · `UDP` · `async` · `event` · `internal`
-
-## MCP App Viewer
-
-When used with clients that support [MCP Apps](https://modelcontextprotocol.io/specification/2025-06-18/server/utilities/apps) (like Claude), the `show_diagram` tool renders an **interactive diagram viewer** directly in the conversation. Click nodes, inspect endpoints, and see the full architecture inline. No browser tab needed.
 
 ## How It Works
 
-This MCP server is a thin client. It authenticates with your token and proxies tool calls to the Composer API at `mcp.usecomposer.com`. Your diagram data lives on Composer's servers. The MCP server itself is stateless.
+Authentication is handled via OAuth 2.1 — your browser opens for a one-time consent flow, and you're connected. Tool calls are proxied to the Composer API at `mcp.usecomposer.com`. Your diagram data lives on Composer's servers. The MCP server itself is stateless.
 
-Changes made through MCP are immediately visible on the [Composer canvas](https://usecomposer.com) via real-time WebSocket sync. Changes made on the Composer canvas are also visible to your agent on the next tool call. Edits flow both directions.
-
-## Demo Mode
-
-Want to explore before signing up? Run the server with sample data:
-
-```bash
-npx @usecomposer/mcp --demo
-```
-
-This starts the server with a pre-built architecture diagram so you can try all the tools without an account.
+Changes made through MCP are immediately visible on the [Composer canvas](https://usecomposer.com) via real-time WebSocket sync.
 
 ## Development
 

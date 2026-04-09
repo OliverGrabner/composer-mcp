@@ -178,6 +178,44 @@ export function createServer(): McpServer {
     async () => proxyTool("verify_diagram", {})
   );
 
+  // ── Diagram Management ───────────────────────────────────────
+
+  server.tool(
+    "list_diagrams",
+    "List all diagrams accessible to you. Call this first to find which diagram to work on.",
+    {
+      repo_hint: z.string().max(256).default("").describe("Optional — filter by GitHub repo name (e.g. 'my-project'). Matching diagrams are marked with 'match': true."),
+    },
+    async (args) => proxyTool("list_diagrams", args)
+  );
+
+  server.tool(
+    "create_diagram",
+    "Create a new diagram and auto-select it for this session.",
+    {
+      name: z.string().min(1).max(255).describe("Display name for the diagram (e.g. 'My Backend Architecture')"),
+    },
+    async (args) => proxyTool("create_diagram", args)
+  );
+
+  server.tool(
+    "select_diagram",
+    "Select which diagram to work on for this session.",
+    {
+      diagram_id: z.string().max(128).describe("The UUID of the diagram (from list_diagrams output)"),
+    },
+    async (args) => proxyTool("select_diagram", args)
+  );
+
+  server.tool(
+    "rename_diagram",
+    "Rename the currently selected diagram.",
+    {
+      name: z.string().min(1).max(255).describe("New display name for the diagram"),
+    },
+    async (args) => proxyTool("rename_diagram", args)
+  );
+
   // ── Screenshot ─────────────────────────────────────────────────
 
   server.tool(
