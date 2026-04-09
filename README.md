@@ -1,5 +1,5 @@
 <p align="center">
-  <video src="https://github.com/OliverGrabner/composer-mcp/raw/main/demo.mp4" controls autoplay loop muted></video>
+  <img src="https://github.com/OliverGrabner/composer-mcp/raw/main/demo.gif" alt="Composer demo" />
 </p>
 
 <p align="center">
